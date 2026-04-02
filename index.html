@@ -20,16 +20,8 @@
       text-align: center;
     }
 
-    header h1 {
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    header p {
-      font-size: 13px;
-      opacity: 0.85;
-      margin-top: 2px;
-    }
+    header h1 { font-size: 22px; font-weight: 600; }
+    header p { font-size: 13px; opacity: 0.85; margin-top: 2px; }
 
     .container {
       max-width: 480px;
@@ -43,17 +35,15 @@
       border-radius: 12px;
       padding: 16px;
       margin-bottom: 12px;
-      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 14px;
       text-decoration: none;
       color: inherit;
+      position: relative;
     }
 
-    .member-card:active {
-      background: #d4edde;
-    }
+    .member-card:active { background: #d4edde; }
 
     .avatar {
       width: 50px;
@@ -69,9 +59,7 @@
       flex-shrink: 0;
     }
 
-    .member-info {
-      flex: 1;
-    }
+    .member-info { flex: 1; }
 
     .member-name {
       font-size: 17px;
@@ -79,11 +67,7 @@
       color: #2E7D52;
     }
 
-    .member-age {
-      font-size: 13px;
-      color: #555;
-      margin-top: 2px;
-    }
+    .member-age { font-size: 13px; color: #555; margin-top: 2px; }
 
     .reminder {
       background: #E8872A;
@@ -95,6 +79,18 @@
       line-height: 1.4;
     }
 
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 8px;
+      flex-shrink: 0;
+    }
+
+    .delete-btn:active { color: #e55; }
+
     .add-btn {
       width: 100%;
       padding: 16px;
@@ -105,6 +101,89 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 8px;
+    }
+
+    /* Модальное окно */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .modal h2 {
+      font-size: 18px;
+      color: #2E7D52;
+      margin-bottom: 16px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #4CAF7D;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #FAFFFE;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-save {
+      flex: 1;
+      padding: 12px;
+      background: #2E7D52;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      padding: 12px;
+      background: white;
+      color: #2E7D52;
+      border: 1px solid #4CAF7D;
+      border-radius: 10px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+      padding: 32px 16px;
     }
 
     footer {
@@ -123,39 +202,157 @@
 </header>
 
 <div class="container">
-
-  <a href="member.html" class="member-card">
-    <div class="avatar">T</div>
-    <div class="member-info">
-      <div class="member-name">Toshka</div>
-      <div class="member-age">Miaka 11</div>
-      <div class="reminder">Paracetamol 250mg × 3/siku — hadi tarehe 5</div>
-    </div>
-  </a>
-
-  <a href="member.html" class="member-card">
-    <div class="avatar">M</div>
-    <div class="member-info">
-      <div class="member-name">Maria</div>
-      <div class="member-age">Miaka 38</div>
-    </div>
-  </a>
-
-  <a href="member.html" class="member-card">
-    <div class="avatar">V</div>
-    <div class="member-info">
-      <div class="member-name">Vanessa</div>
-      <div class="member-age">Miaka 7</div>
-    </div>
-  </a>
-
-  <button class="add-btn" onclick="alert('Inakuja hivi karibuni! 🌱')">+ Ongeza mwanafamilia</button>
-
+  <div id="members-list"></div>
+  <button class="add-btn" onclick="openModal()">+ Ongeza mwanafamilia</button>
 </div>
 
 <footer>
   Imetengenezwa na Dkt. Maria Rukavishnikova
 </footer>
+
+<!-- Модальное окно добавления -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2>Mwanafamilia mpya</h2>
+
+    <div class="field">
+      <label>Jina *</label>
+      <input type="text" id="input-name" placeholder="Jina la mwanafamilia">
+    </div>
+
+    <div class="field">
+      <label>Tarehe ya kuzaliwa *</label>
+      <input type="date" id="input-dob">
+    </div>
+
+    <div class="field">
+      <label>Jinsia</label>
+      <select id="input-gender">
+        <option value="">— Chagua —</option>
+        <option value="me">Mme</option>
+        <option value="ke">Mke</option>
+        <option value="mtoto-m">Mtoto wa kiume</option>
+        <option value="mtoto-k">Mtoto wa kike</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Uzito (kg)</label>
+      <input type="number" id="input-weight" placeholder="35">
+    </div>
+
+    <div class="field">
+      <label>Mzio (kama upo)</label>
+      <input type="text" id="input-allergy" placeholder="Mfano: Penicillin">
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Ghairi</button>
+      <button class="btn-save" onclick="saveMember()">Hifadhi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getMembers() {
+    return JSON.parse(localStorage.getItem('afya_members') || '[]');
+  }
+
+  function saveMembers(members) {
+    localStorage.setItem('afya_members', JSON.stringify(members));
+  }
+
+  function calcAge(dob) {
+    if (!dob) return '';
+    const today = new Date();
+    const birth = new Date(dob);
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    if (age < 2) {
+      const months = (today.getFullYear() - birth.getFullYear()) * 12 + today.getMonth() - birth.getMonth();
+      return 'Miezi ' + months;
+    }
+    return 'Miaka ' + age;
+  }
+
+  function getInitial(name) {
+    return name ? name.charAt(0).toUpperCase() : '?';
+  }
+
+  function renderMembers() {
+    const members = getMembers();
+    const list = document.getElementById('members-list');
+
+    if (members.length === 0) {
+      list.innerHTML = '<div class="empty-msg">Bado hakuna mwanafamilia.<br>Bonyeza kitufe hapa chini kuongeza.</div>';
+      return;
+    }
+
+    list.innerHTML = members.map((m, i) => `
+      <a href="member.html?id=${i}" class="member-card">
+        <div class="avatar">${getInitial(m.name)}</div>
+        <div class="member-info">
+          <div class="member-name">${m.name}</div>
+          <div class="member-age">${calcAge(m.dob)}${m.weight ? ' · kg ' + m.weight : ''}</div>
+          ${m.allergy ? '<div class="member-age">Mzio: ' + m.allergy + '</div>' : ''}
+        </div>
+        <button class="delete-btn" onclick="deleteMember(event, ${i})">×</button>
+      </a>
+    `).join('');
+  }
+
+  function deleteMember(event, index) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (confirm('Futa mwanafamilia huyu?')) {
+      const members = getMembers();
+      members.splice(index, 1);
+      saveMembers(members);
+      renderMembers();
+    }
+  }
+
+  function openModal() {
+    document.getElementById('modal').classList.add('active');
+    document.getElementById('input-name').focus();
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.getElementById('input-name').value = '';
+    document.getElementById('input-dob').value = '';
+    document.getElementById('input-gender').value = '';
+    document.getElementById('input-weight').value = '';
+    document.getElementById('input-allergy').value = '';
+  }
+
+  function saveMember() {
+    const name = document.getElementById('input-name').value.trim();
+    const dob = document.getElementById('input-dob').value;
+
+    if (!name) {
+      alert('Tafadhali andika jina.');
+      return;
+    }
+
+    const member = {
+      name: name,
+      dob: dob,
+      gender: document.getElementById('input-gender').value,
+      weight: document.getElementById('input-weight').value,
+      allergy: document.getElementById('input-allergy').value.trim()
+    };
+
+    const members = getMembers();
+    members.push(member);
+    saveMembers(members);
+    closeModal();
+    renderMembers();
+  }
+
+  renderMembers();
+</script>
 
 </body>
 </html>
