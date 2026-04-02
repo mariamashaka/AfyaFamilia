@@ -47,6 +47,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      text-decoration: none;
+      color: inherit;
     }
 
     .member-card:active {
@@ -122,32 +124,32 @@
 
 <div class="container">
 
-  <div class="member-card">
+  <a href="member.html" class="member-card">
     <div class="avatar">T</div>
     <div class="member-info">
       <div class="member-name">Toshka</div>
       <div class="member-age">Miaka 11</div>
       <div class="reminder">Paracetamol 250mg × 3/siku — hadi tarehe 5</div>
     </div>
-  </div>
+  </a>
 
-  <div class="member-card">
+  <a href="member.html" class="member-card">
     <div class="avatar">M</div>
     <div class="member-info">
       <div class="member-name">Maria</div>
       <div class="member-age">Miaka 38</div>
     </div>
-  </div>
+  </a>
 
-  <div class="member-card">
+  <a href="member.html" class="member-card">
     <div class="avatar">V</div>
     <div class="member-info">
       <div class="member-name">Vanessa</div>
       <div class="member-age">Miaka 7</div>
     </div>
-  </div>
+  </a>
 
-  <button class="add-btn">+ Ongeza mwanafamilia</button>
+  <button class="add-btn" onclick="alert('Inakuja hivi karibuni! 🌱')">+ Ongeza mwanafamilia</button>
 
 </div>
 
