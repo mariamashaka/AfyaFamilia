@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ugonjwa wa Sasa</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: sans-serif;
+      background: #FAFFFE;
+      color: #222;
+    }
+
+    header {
+      background: #2E7D52;
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .date-row {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section {
+      background: #E8F5EE;
+      border: 1px solid #4CAF7D;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2E7D52;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .item {
+      background: white;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-label {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 2px;
+    }
+
+    .photo-hint {
+      font-size: 12px;
+      color: #2E7D52;
+      margin-top: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #4CAF7D;
+      color: white;
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 12px;
+      margin: 3px 3px 3px 0;
+    }
+
+    .tag-orange {
+      background: #E8872A;
+    }
+
+    .pending-item {
+      background: white;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pending-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #E8872A;
+      flex-shrink: 0;
+    }
+
+    .outcome-section {
+      background: #fff8f0;
+      border: 1px solid #E8872A;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .outcome-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #E8872A;
+      margin-bottom: 10px;
+    }
+
+    .outcome-item {
+      background: white;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .archive-btn {
+      width: 100%;
+      padding: 16px;
+      background: #2E7D52;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .edit-btn {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      color: #2E7D52;
+      border: 1px solid #4CAF7D;
+      border-radius: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button class="back-btn" onclick="history.back()">←</button>
+  <h1>Ugonjwa wa sasa — Toshka</h1>
+</header>
+
+<div class="container">
+
+  <div class="date-row">Ilianza: 28 Machi 2026</div>
+
+  <!-- 1. Dalili / Симптомы -->
+  <div class="section">
+    <div class="section-title">🤒 Dalili</div>
+    <div class="item">
+      <div class="item-label">Homa</div>
+      38.5°C — usiku na mchana
+    </div>
+    <div class="item">
+      <div class="item-label">Kuhara</div>
+      Mara 4 kwa siku — maji, hakuna damu
+    </div>
+    <div class="item">
+      <div class="item-label">Kukohoa</div>
+      Kikohozi kavu — usiku zaidi
+    </div>
+  </div>
+
+  <!-- 2. Uchunguzi / Обследования -->
+  <div class="section">
+    <div class="section-title">🔬 Uchunguzi</div>
+    <div class="item">
+      <div class="item-label">Kipimo cha damu</div>
+      WBC 11.2 — kidogo juu
+      <div class="photo-hint">📷 Picha ya matokeo imehifadhiwa</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Kipimo cha kinyesi</div>
+      Hakijafanywa bado
+    </div>
+  </div>
+
+  <!-- 3. Utambuzi / Диагноз -->
+  <div class="section">
+    <div class="section-title">📋 Utambuzi</div>
+    <div class="item">
+      <span class="tag">Daktari</span>
+      <span class="tag tag-orange">Kliniki ya Nesuda</span>
+      <br><br>
+      Gastroenteritis ya virusi + kikohozi cha juu ya njia ya hewa
+    </div>
+  </div>
+
+  <!-- 4. Dawa / Лекарства -->
+  <div class="section">
+    <div class="section-title">💊 Dawa anazotumia sasa</div>
+    <div class="item">
+      <div class="item-label">Paracetamol</div>
+      250mg — mara 3 kwa siku — hadi tarehe 5 Aprili
+      <div class="photo-hint">📷 Picha ya dawa imehifadhiwa</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Zinc</div>
+      10mg — mara 1 kwa siku — hadi tarehe 7 Aprili
+    </div>
+    <div class="item">
+      <div class="item-label">ORS</div>
+      Kila wakati wa kuhara — kiasi kinachohitajika
+    </div>
+  </div>
+
+  <!-- 5. Iliyopendekezwa / Что ещё рекомендовали -->
+  <div class="section">
+    <div class="section-title">⏳ Bado haijafanywa</div>
+    <div class="pending-item">
+      <div class="pending-dot"></div>
+      Kipimo cha kinyesi — kipendekezwa na daktari
+    </div>
+    <div class="pending-item">
+      <div class="pending-dot"></div>
+      Rufaa kwa daktari wa mapafu ikiwa kikohozi kitaendelea zaidi ya siku 7
+    </div>
+  </div>
+
+  <!-- 6. Matokeo / Исход -->
+  <div class="outcome-section">
+    <div class="outcome-title">✅ Matokeo ya ugonjwa</div>
+    <div class="outcome-item">
+      Bado anaendelea kupona — ugonjwa bado unaendelea
+    </div>
+  </div>
+
+  <button class="edit-btn">✏️ Hariri maelezo</button>
+  <button class="archive-btn" onclick="alert('Ugonjwa utahifadhiwa kwenye kumbukumbu. Inakuja hivi karibuni! 🌱')">
+    Hifadhi kwenye kumbukumbu
+  </button>
+
+</div>
+
+<footer>
+  Imetengenezwa na Dkt. Maria Rukavishnikova
+</footer>
+
+</body>
+</html>
